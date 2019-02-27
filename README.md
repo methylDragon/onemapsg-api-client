@@ -121,7 +121,7 @@ Remember to use them as such! `Client.method()`
 **Planning Areas**
 
 - Get all Planning Areas
-  - `retrieve_theme(query_name, extents=None)`
+  - `get_all_planning_areas(year=None)`
 - Get Planning Area Names
   - `get_planning_area_names(year=None)`
 - Get Planning Area Bounds
