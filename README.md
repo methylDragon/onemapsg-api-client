@@ -1,4 +1,7 @@
 # OneMap API Client
+
+[![PyPI version](https://badge.fury.io/py/onemapsg.svg)](https://badge.fury.io/py/onemapsg)
+
 Python Wrapper Client for the OneMap API
 
 ![img](assets/logo.png)
@@ -6,6 +9,8 @@ Python Wrapper Client for the OneMap API
 
 
 Docs here: https://docs.onemap.sg/#static-map
+
+PyPI Link: <https://pypi.org/project/onemapsg/>
 
 Register for an API key here: https://developers.onemap.sg/signup/
 
@@ -18,7 +23,11 @@ This client:
 
 
 
+## Example Usage
+
 ```python
+from onemapsg import OneMapClient
+
 Client = OneMapClient("YOUR_EMAIL", "YOUR_PASSWORD")
 
 Client.search("Dragon View Park")
@@ -39,6 +48,14 @@ Client.search("Dragon View Park")
    'LONGITUDE': '103.828065538017',
    'LONGTITUDE': '103.828065538017'}]}
 '''
+```
+
+
+
+## Installation
+
+```shell
+pip install onemapsg
 ```
 
 

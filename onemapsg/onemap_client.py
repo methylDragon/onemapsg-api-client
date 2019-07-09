@@ -14,9 +14,9 @@ class OneMapClient():
         self.token = None
 
     def get_token(self, email=None, password=None):
-        if email == None:
+        if email is None:
             email = self.email
-        if password == None:
+        if password is None:
             password = self.password
 
         multipart_data = MultipartEncoder(fields={'email': email,
@@ -242,7 +242,7 @@ class OneMapClient():
             return
 
         try:
-            if extents != None:
+            if extents is not None:
                 extents = "{},{},{},{}".format(extents[0], extents[1], extents[2], extents[3])
 
             return json.loads(requests.get(self.url_base + "/privateapi/themesvc/retrieveTheme",
@@ -373,20 +373,6 @@ class OneMapClient():
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getHouseholdStructure",
-                                           params={'year': year,
-                                                   'planningArea': planning_area,
-                                                   'token': self.token}).text)
-        except Exception as e:
-            print(e)
-            return
-
-    def get_work_income(self, year, planning_area):
-        '''API Documentation: https://docs.onemap.sg/#income-from-work-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
-
-        try:
-            return json.loads(requests.get(self.url_base + "/privateapi/popapi/getIncomeFromWork",
                                            params={'year': year,
                                                    'planningArea': planning_area,
                                                    'token': self.token}).text)
@@ -669,15 +655,15 @@ class OneMapClient():
             else:
                 return requests.get(self.url_base + "/commonapi/staticmap/getStaticImage",
                                     params={'layerchosen': layer_chosen,
-                                    'postal': location,
-                                    'zoom': zoom,
-                                    'width': width,
-                                    'height': height,
-                                    'polygons': polygons,
-                                    'lines': lines,
-                                    'points': points,
-                                    'color': color,
-                                    'fillColor': fill_color}).content
+                                            'postal': location,
+                                            'zoom': zoom,
+                                            'width': width,
+                                            'height': height,
+                                            'polygons': polygons,
+                                            'lines': lines,
+                                            'points': points,
+                                            'color': color,
+                                            'fillColor': fill_color}).content
 
         except Exception as e:
             print(e)

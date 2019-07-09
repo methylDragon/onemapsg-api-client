@@ -1,0 +1,7 @@
+
+dist/
+build/
+
+onemapsg\.egg-info/
+
+*.pyc
