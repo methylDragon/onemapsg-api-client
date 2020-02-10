@@ -5,3 +5,5 @@ build/
 onemapsg\.egg-info/
 
 *.pyc
+
+onemap_debug.py

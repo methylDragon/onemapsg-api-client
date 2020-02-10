@@ -31,6 +31,8 @@ class OneMapClient():
         if response.ok:
             self.token = response_data['access_token']
             self.expiry = int(response_data['expiry_timestamp'])
+        else:
+            print("TOKEN REFRESH FAILED!")
 
         return self.token, self.expiry
 
@@ -44,8 +46,7 @@ class OneMapClient():
 
     def query_api(self, endpoint, param_dict):
         '''General OneMap API query with token.'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             if not endpoint.startswith("/"):
@@ -83,8 +84,7 @@ class OneMapClient():
 
     def reverse_geocode_SVY21(self, coordinates, buffer=10, address_type="All", other_features=False):
         '''API Documentation: https://docs.onemap.sg/#reverse-geocode-svy21'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             if other_features:
@@ -111,8 +111,7 @@ class OneMapClient():
 
     def reverse_geocode_WGS84(self, coordinates, buffer=10, address_type="All", other_features=False):
         '''API Documentation: https://docs.onemap.sg/#reverse-geocode-wgs84'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             if other_features:
@@ -193,8 +192,7 @@ class OneMapClient():
 
     def check_theme_status(self, query_name, date_time):
         '''API Documentation: https://docs.onemap.sg/#check-theme-status'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/themesvc/checkThemeStatus",
@@ -207,8 +205,7 @@ class OneMapClient():
 
     def get_theme_info(self, query_name):
         '''API Documentation: https://docs.onemap.sg/#get-theme-info'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/themesvc/getThemeInfo",
@@ -220,8 +217,7 @@ class OneMapClient():
 
     def get_all_themes_info(self, more_info=False):
         '''API Documentation: https://docs.onemap.sg/#get-all-themes-info'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             if more_info:
@@ -238,8 +234,7 @@ class OneMapClient():
 
     def retrieve_theme(self, query_name, extents=None):
         '''API Documentation: https://docs.onemap.sg/#retrieve_theme'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             if extents is not None:
@@ -255,8 +250,7 @@ class OneMapClient():
 
     def get_all_planning_areas(self, year=None):
         '''API Documentation: https://docs.onemap.sg/#planning-area'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getAllPlanningarea",
@@ -268,8 +262,7 @@ class OneMapClient():
 
     def get_planning_area_names(self, year=None):
         '''API Documentation: https://docs.onemap.sg/#names-of-planning-area'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getPlanningareaNames",
@@ -281,8 +274,7 @@ class OneMapClient():
 
     def get_planning_area_bounds(self, coordinates, year=None):
         '''API Documentation: https://docs.onemap.sg/#planning-area-query'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getPlanningarea",
@@ -296,8 +288,7 @@ class OneMapClient():
 
     def get_economic_statuses(self, year, planning_area, gender=None):
         '''API Documentation: https://docs.onemap.sg/#economic-status-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getEconomicStatus",
@@ -311,8 +302,7 @@ class OneMapClient():
 
     def get_education_attendance(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#education-status-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getEthnicGroup",
@@ -325,8 +315,7 @@ class OneMapClient():
 
     def get_ethnic_groups(self, year, planning_area, gender=None):
         '''API Documentation: https://docs.onemap.sg/#ethnic-distribution-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getEthnicGroup",
@@ -340,8 +329,7 @@ class OneMapClient():
 
     def get_household_monthly_work_income(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#work-income-for-household-monthly'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getHouseholdMonthlyIncomeWork",
@@ -354,8 +342,7 @@ class OneMapClient():
 
     def get_household_sizes(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#household-size-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getHouseholdSize",
@@ -368,8 +355,7 @@ class OneMapClient():
 
     def get_household_structures(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#household-structure-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getHouseholdStructure",
@@ -382,8 +368,7 @@ class OneMapClient():
 
     def get_work_income(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#income-from-work-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getIncomeFromWork",
@@ -396,8 +381,7 @@ class OneMapClient():
 
     def get_industries(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#industry-of-population-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getIndustry",
@@ -410,8 +394,7 @@ class OneMapClient():
 
     def get_language_literacy(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#language-literacy-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getLanguageLiterate",
@@ -424,8 +407,7 @@ class OneMapClient():
 
     def get_marital_statuses(self, year, planning_area, gender=None):
         '''API Documentation: https://docs.onemap.sg/#marital-status-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getMaritalStatus",
@@ -439,8 +421,7 @@ class OneMapClient():
 
     def get_modes_of_transport_to_school(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#mode-of-transports-to-school-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getModeOfTransportSchool",
@@ -453,8 +434,7 @@ class OneMapClient():
 
     def get_modes_of_transport_to_work(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#mode-of-transports-to-work-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getModeOfTransportWork",
@@ -467,8 +447,7 @@ class OneMapClient():
 
     def get_occupations(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#occupation-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getOccupation",
@@ -481,8 +460,7 @@ class OneMapClient():
 
     def get_age_groups(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#age-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getPopulationAgeGroup",
@@ -495,8 +473,7 @@ class OneMapClient():
 
     def get_religious_groups(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#religion-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getReligion",
@@ -509,8 +486,7 @@ class OneMapClient():
 
     def get_spoken_languages(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#spoken-language-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getSpokenAtHome",
@@ -523,8 +499,7 @@ class OneMapClient():
 
     def get_tenancy(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#tenancy-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getTenancy",
@@ -537,8 +512,7 @@ class OneMapClient():
 
     def get_dwelling_types(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#dwelling-type-household-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getTypeOfDwellingHousehold",
@@ -551,8 +525,7 @@ class OneMapClient():
 
     def get_population_by_dwelling_types(self, year, planning_area):
         '''API Documentation: https://docs.onemap.sg/#dwelling-type-population-data'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
             return json.loads(requests.get(self.url_base + "/privateapi/popapi/getTypeOfDwellingPop",
@@ -565,12 +538,11 @@ class OneMapClient():
 
     def get_route(self, start_coordinates, end_coordinates, route_type):
         '''API Documentation: https://docs.onemap.sg/#route'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
-            start_coordinates = "{},{},{},{}".format(start_coordinates[0], start_coordinates[1])
-            end_coordinates = "{},{},{},{}".format(end_coordinates[0], end_coordinates[1])
+            start_coordinates = "{},{}".format(start_coordinates[0], start_coordinates[1])
+            end_coordinates = "{},{}".format(end_coordinates[0], end_coordinates[1])
 
             return json.loads(requests.get(self.url_base + "/privateapi/routingsvc/route",
                                            params={'start': start_coordinates,
@@ -583,12 +555,11 @@ class OneMapClient():
 
     def get_public_transport_route(self, start_coordinates, end_coordinates, date, time, mode, max_walk_distance=None, num_itineraries=1):
         '''API Documentation: https://docs.onemap.sg/#route'''
-        if self.check_expired_and_refresh_token()[0]:
-            return
+        self.check_expired_and_refresh_token()[0]
 
         try:
-            start_coordinates = "{},{},{},{}".format(start_coordinates[0], start_coordinates[1])
-            end_coordinates = "{},{},{},{}".format(end_coordinates[0], end_coordinates[1])
+            start_coordinates = "{},{}".format(start_coordinates[0], start_coordinates[1])
+            end_coordinates = "{},{}".format(end_coordinates[0], end_coordinates[1])
 
             return json.loads(requests.get(self.url_base + "/privateapi/routingsvc/route",
                                            params={'start': start_coordinates,
