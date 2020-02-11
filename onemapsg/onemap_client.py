@@ -567,6 +567,7 @@ class OneMapClient():
                                                    'routeType': 'pt',
                                                    'date': date,
                                                    'time': time,
+                                                   'mode': mode,
                                                    'maxWalkDistance': max_walk_distance,
                                                    'numItneraries': num_itineraries,
                                                    'token': self.token}).text)

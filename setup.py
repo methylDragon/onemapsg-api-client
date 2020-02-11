@@ -5,7 +5,7 @@ with open('PyPI/HISTORY.md') as history_file:
     HISTORY = history_file.read()
 
 setup_args = {'name': "onemapsg",
-              'version': "1.0.1.post1",
+              'version': "1.0.2",
               'description': "Python Wrapper Client for the OneMap API with automatic token handling",
               'long_description_content_type': "text/markdown",
               'long_description': README + '\n\n' + HISTORY,

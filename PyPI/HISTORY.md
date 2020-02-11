@@ -1,5 +1,13 @@
 # OneMap API Client Changelog
 
+## v1.0.2 - 2020_02_10
+
+### Fixed
+
+- Fix missing `mode` parameter in `get_public_transport_route()` call
+
+
+
 ## v1.0.1 - 2020_02_10
 
 ### Changed
