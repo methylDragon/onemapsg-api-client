@@ -8,7 +8,7 @@ Python Wrapper Client for the OneMap API
 
 
 
-Docs here: https://docs.onemap.sg/#static-map
+Docs here: https://docs.onemap.sg/
 
 PyPI Link: <https://pypi.org/project/onemapsg/>
 
