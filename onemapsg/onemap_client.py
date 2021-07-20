@@ -19,12 +19,12 @@ class OneMapClient():
         if password is None:
             password = self.password
 
-        multipart_data = MultipartEncoder(fields={'email': email,
-                                                  'password': password})
-
-        response = requests.post(self.url_base + "/privateapi/auth/post/getToken",
-                                 data=multipart_data,
-                                 headers={'Content-Type': multipart_data.content_type})
+        json_data = {"email":email, "password":password}
+        response = requests.post(
+            self.url_base + "/privateapi/auth/post/getToken",
+            json=json_data,
+            headers={"Content-Type":"application/json"}
+        )
 
         response_data = json.loads(response.text)
 

@@ -1,5 +1,15 @@
 # OneMap API Client Changelog
 
+
+
+## v1.0.3 - 2021_07_21
+
+### Fixed
+
+- `get_token()` updated for new JSON API
+
+
+
 ## v1.0.2 - 2020_02_10
 
 ### Fixed
