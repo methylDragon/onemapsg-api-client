@@ -305,7 +305,7 @@ class OneMapClient():
         self.check_expired_and_refresh_token()[0]
 
         try:
-            return json.loads(requests.get(self.url_base + "/privateapi/popapi/getEthnicGroup",
+            return json.loads(requests.get(self.url_base + "/privateapi/popapi/getEducationAttending",
                                            params={'year': year,
                                                    'planningArea': planning_area,
                                                    'token': self.token}).text)
